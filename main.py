@@ -152,3 +152,13 @@ def predict(features: HouseFeatures):
         "predicted_price": predicted_price,
         "log_price": round(float(log_price), 4)
     }
+
+@app.get("/api/sale-price-stats")
+def sale_price_stats():
+    return {
+        "mean": round(float(df["sale_price"].mean()), 2),
+        "std": round(float(df["sale_price"].std()), 2),
+        "log_mean": round(float(df["log_sale_price"].mean()), 4),
+        "log_std": round(float(df["log_sale_price"].std()), 4),
+        "log_prices": df["log_sale_price"].tolist()
+    }
